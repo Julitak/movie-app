@@ -1,0 +1,175 @@
+//@import '~normalize.css';
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~@angular/material/theming';
+
+@include mat-core()
+
+// Alternate dark theme.
+$dark-primary: mat-palette($mat-blue-grey);
+$dark-accent: mat-palette($mat-amber, A200, A100, A400);
+$dark-warn: mat-palette($mat-deep-orange);
+$dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+.unicorn-dark-theme {
+  @include angular-material-theme($dark-theme);
+}
+
+$myVar: (
+  "auto": auto,
+  "initial": initial,
+  "0": 0,
+  "10": 10px,
+  "15": 15px,
+  "50": 50px,
+  "100": 100px,
+  "300": 300px,
+
+);
+
+// Sizes
+@each $name, $value in $myVar {
+  .e-w--#{$name} {
+    width: $value !important;
+  }
+}
+
+@each $name, $value in $myVar {
+  .e-min-w--#{$name} {
+    min-width: $value;
+  }
+}
+
+@each $name, $value in $myVar {
+  .e-max-w--#{$name} {
+    max-width: $value;
+  }
+}
+
+@each $name, $value in $myVar {
+  .e-h--#{$name} {
+    height: $value;
+  }
+}
+
+@each $name, $value in $myVar {
+  .e-min-h--#{$name} {
+    min-height: $value;
+  }
+}
+
+@each $name, $value in $myVar {
+  .e-max-h--#{$name} {
+    max-height: $value;
+  }
+}
+
+// Margins
+@each $name, $value in $myVar {
+  .e-m--top-#{$name} {
+    margin-top: $value !important;
+  }
+}
+
+@each $name, $value in $myVar {
+  .e-m--bottom-#{$name} {
+    margin-bottom: $value !important;
+  }
+}
+
+@each $name, $value in $myVar {
+  .e-m--left-#{$name} {
+    margin-left: $value !important;
+  }
+}
+
+@each $name, $value in $myVar {
+  .e-m--right-#{$name} {
+    margin-right: $value !important;
+  }
+}
+
+@each $name, $value in $myVar {
+  .e-m--vertical-#{$name} {
+    margin-top: $value;
+    margin-bottom: $value;
+  }
+}
+
+@each $name, $value in $myVar {
+  .e-m--horizontal-#{$name} {
+    margin-right: $value;
+    margin-left: $value;
+  }
+}
+
+@each $name, $value in $myVar {
+  .e-m--around-#{$name} {
+    margin: $value !important;
+  }
+}
+
+// Padding
+@each $name, $value in $myVar {
+  .e-p--top-#{$name} {
+    padding-top: $value;
+  }
+}
+
+@each $name, $value in $myVar {
+  .e-p--bottom-#{$name} {
+    padding-bottom: $value;
+  }
+}
+
+@each $name, $value in $myVar {
+  .e-p--left-#{$name} {
+    padding-left: $value !important;
+  }
+}
+
+@each $name, $value in $myVar {
+  .e-p--right-#{$name} {
+    padding-right: $value !important;
+  }
+}
+
+@each $name, $value in $myVar {
+  .e-p--vertical-#{$name} {
+    padding-top: $value !important;
+    padding-bottom: $value !important;
+  }
+}
+
+@each $name, $value in $myVar {
+  .e-p--horizontal-#{$name} {
+    padding-right: $value !important;
+    padding-left: $value !important;
+  }
+}
+
+@each $name, $value in $myVar {
+  .e-p--around-#{$name} {
+    padding: $value !important;
+  }
+}
+
+body {
+  background-color: #303030;;
+}
+
+.e-grid {
+  display: flex !important;
+}
+
+.e-grid--column-center {
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+}
+
+.demo-content {
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  box-sizing: border-box;
+}

@@ -1,0 +1,40 @@
+<div>
+  <mat-accordion class="example-headers-align">
+    <mat-expansion-panel hideToggle="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          &nbsp;
+        </mat-panel-title>
+        <mat-panel-description>
+          &nbsp;hai
+          <mat-icon>filter_list</mat-icon>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <form #myNgFormFm="ngForm">
+        <mat-form-field>
+          <input matInput placeholder="Search" [(ngModel)]="q" name="filter" value="{{ q }}"
+                 #name="ngModel">
+        </mat-form-field>
+      </form>
+      <mat-action-row>
+        <button mat-button color="warn" (click)="search()">Search</button>
+        <button mat-button color="primary" (click)="myNgFormFm.resetForm(); getData()">Reset</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <mat-divider></mat-divider>
+
+  <mat-grid-list cols="3">
+    <mat-grid-tile *ngFor="let movie of movieList" colspan="1" rowspan="1" [routerLink]="['movie', movie.id]">
+      <mat-card>
+        <div class="e-grid--column-center">
+          <img [src]="'../../../assets/images/movie-covers/'+ movie.img" [alt]="movie.name" class="e-max-h--300"
+               style="object-fit: contain">
+          <mat-card-title class="e-m--top-15">{{movie.name}}</mat-card-title>
+          <mat-card-subtitle *ngIf="movie.rate">Rating: {{movie.rate}}</mat-card-subtitle>
+        </div>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
