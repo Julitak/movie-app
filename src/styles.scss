@@ -161,9 +161,15 @@ body {
   display: flex !important;
 }
 
+.e-grid--justify-center {
+  display: flex !important;
+  justify-content: center !important;
+}
+
 .e-grid--column-center {
   display: flex;
   align-content: center;
+  justify-content: center;
   flex-direction: column;
 }
 
@@ -173,3 +179,31 @@ body {
   height: 100%;
   box-sizing: border-box;
 }
+
+.mat-figure, .back {
+  &:active, &:focus {
+    outline: 0 !important;
+    border: none !important;
+    -moz-outline-style: none !important;
+  }
+  * {
+    &:active, &:focus {
+      outline: 0 !important;
+      border: none !important;
+      -moz-outline-style: none !important;
+    }
+  }
+}
+.back {
+  cursor: pointer;
+}
+
+.animation-scale {
+  cursor: pointer;
+  transition: 0.2s all ease;
+  &:hover {
+    transition: 0.2s all ease;
+    transform: scale(1.01);
+  }
+}
+

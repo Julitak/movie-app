@@ -1,36 +1,61 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
-import { LayoutComponent } from './components/layout/layout.component';
-import { AppRoutingModule } from './app-routing.module';
-import { MaterialModule } from './material.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { Routes, RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
-import { MovieListComponent } from './components/movie-list/movie-list.component';
+
+import {
+  StoreRouterConnectingModule,
+  RouterStateSerializer,
+} from '@ngrx/router-store';
+import { StoreModule, MetaReducer } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+
+import { reducers, effects, CustomSerializer } from './store';
+
+// not used in production
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { storeFreeze } from 'ngrx-store-freeze';
+
+const environment = {
+  development: true,
+  production: false,
+};
+
+export const metaReducers: MetaReducer<any>[] = !environment.production
+  ? [storeFreeze]
+  : [];
+
+// bootstrap
+import { AppComponent } from './containers/app/app.component';
+import { MaterialModule } from './material.module';
 import { AppConfigModule } from './app-config.module';
-import { ApiService } from './services/api.service';
-import { HttpClientModule } from '@angular/common/http';
-import { MovieComponent } from './components/movie/movie.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+// routes
+export const ROUTES: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'movies' },
+  {
+    path: 'movies',
+    loadChildren: '../movies/movies.module#MoviesModule',
+  },
+];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LayoutComponent,
-    MovieListComponent,
-    MovieComponent
-  ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    MaterialModule,
     BrowserAnimationsModule,
-    FormsModule,
+    RouterModule.forRoot(ROUTES),
+    MaterialModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
+    EffectsModule.forRoot(effects),
+    StoreRouterConnectingModule,
+    ReactiveFormsModule,
     AppConfigModule,
-    HttpClientModule
+    FormsModule,
+    environment.development ? StoreDevtoolsModule.instrument() : [],
   ],
-  providers: [ApiService],
-  bootstrap: [AppComponent]
+  providers: [{ provide: RouterStateSerializer, useClass: CustomSerializer }],
+  declarations: [AppComponent],
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
