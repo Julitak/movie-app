@@ -27,8 +27,4 @@ export class MovieContainerComponent implements OnInit {
   ngOnInit() {
   }
 
-
-  reset() {
-    this.store.dispatch(new fromStore.LoadMovies());
-  }
 }

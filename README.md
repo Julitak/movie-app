@@ -1,27 +1,41 @@
-# MovieApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.5.
+
+# MovieApp 
+   
+
+A simple Movie Collection App using: 
+* [Angular](https://angular.io)
+* [ngrx/store](https://github.com/ngrx/platform/blob/master/docs/store/README.md)
+* [ngrx/effects](https://github.com/ngrx/platform/blob/master/docs/effects/README.md)
+* [ngrx/router-store](https://github.com/ngrx/router-store/blob/master/README.md)
+* [ngrx/store-devtools](https://github.com/ngrx/platform/blob/master/docs/store-devtools/README.md) for debugging
+* [JSON Server](https://github.com/typicode/json-server/blob/master/README.md) as mockup data service
+* [Material](https://github.com/angular/material2/blob/master/README.md)
+
+
+## Dependency installation
+
+```
+npm install -g json-server
+```
+
+## Project installation
+
+```
+cd <movie-app>
+npm install
+```
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. Alternatively run `ng serve` and `json-server --watch db.json` concurrently. Port `:3000
+` serves as REST API service. 
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+<h1 align="center">
+<img width="100" valign="bottom" src="https://i.imgur.com/fINuUV1.jpg">
+</h1>
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
