@@ -40,10 +40,3 @@ export function reducer(state = initialState,
     }
   }
 }
-
-
-export const getQuery = (state: SearchState) => state.query;
-
-export const getLoading = (state: SearchState) => state.loading;
-
-export const getError = (state: SearchState) => state.error;

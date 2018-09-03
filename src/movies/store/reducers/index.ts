@@ -16,7 +16,3 @@ export const reducers: ActionReducerMap<ProductsState> = {
 export const getProductsState = createFeatureSelector<ProductsState>(
   'movies'
 );
-
-export const getSearchState = createFeatureSelector<ProductsState>(
-  'search'
-);

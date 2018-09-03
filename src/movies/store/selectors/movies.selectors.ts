@@ -3,6 +3,7 @@ import { createSelector } from '@ngrx/store';
 import * as fromRoot from '../../../app/store';
 import * as fromFeature from '../reducers';
 import * as fromMovies from '../reducers/movies.reducer';
+import * as fromSearch from '../reducers/movie-search.reducer';
 
 import { Movie } from '../../models/movie.model';
 
@@ -32,9 +33,4 @@ export const getMoviesLoaded = createSelector(
   getMovieState,
   fromMovies.getMoviesLoaded
 );
-export const getMoviesLoading = createSelector(
-  getMovieState,
-  fromMovies.getMoviesLoading
-);
 
-// export const getSearchQuery = createSelector();

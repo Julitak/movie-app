@@ -1,12 +1,13 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 
 import { select, Store } from '@ngrx/store';
 import * as fromStore from '../../store';
 import * as fromSearchMovies from '../../store';
+import { Observable } from 'rxjs';
+import { Movie } from '../../models/movie.model';
 
 @Component({
   selector: 'movies-search',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <mat-accordion>
       <mat-expansion-panel>
@@ -17,32 +18,31 @@ import * as fromSearchMovies from '../../store';
         </mat-expansion-panel-header>
         <form #myNgFormFm="ngForm" class="e-grid--justify-center">
           <mat-form-field>
-            <input matInput placeholder="Search" [(ngModel)]="q" name="filter" value="{{ q }}"
+            <input matInput placeholder="Search" [(ngModel)]="q$" name="filter" value="{{ q$ }}"
                    #name="ngModel">
           </mat-form-field>
         </form>
         <mat-action-row class="e-grid--justify-center">
-          <button mat-button color="warn" (click)="search()">Search</button>
+          <button mat-button color="warn" (click)="search(q$)">Search</button>
           <button mat-button color="primary" (click)="myNgFormFm.resetForm(); reset()">Reset</button>
         </mat-action-row>
       </mat-expansion-panel>
     </mat-accordion>
-
     <mat-divider></mat-divider>
   `,
 })
 export class SearchMoviesComponent implements OnInit {
-  q: string;
-
+  @Input() q$: string;
   constructor(private store: Store<fromStore.ProductsState>) {
   }
 
   ngOnInit() {
   }
 
-  search() {
-    this.store.dispatch(new fromStore.SearchMovies(this.q));
+  search(query) {
+    this.store.dispatch(new fromStore.SearchMovies(query));
   }
+
 
   reset() {
     this.store.dispatch(new fromStore.LoadMovies());

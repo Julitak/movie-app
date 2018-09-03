@@ -2,12 +2,14 @@ import * as fromMovies from '../actions/movies.action';
 import { Movie } from '../../models/movie.model';
 
 export interface MovieState {
+  search: any;
   entities: { [id: number]: Movie };
   loaded: boolean;
   loading: boolean;
 }
 
 export const initialState: MovieState = {
+  search: {},
   entities: {},
   loaded: false,
   loading: false,
