@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
   selector: 'movie-list',
   template: `
     <div>
-      <mat-grid-list cols="3">
+      <mat-grid-list [cols]="breakpoint" rowHeight="500" (window:resize)="onResize($event)">
         <mat-grid-tile *ngFor="let movie of (movies$ | async)" colspan="1" rowspan="1">
           <mat-card [routerLink]="[movie.id]" class="animation-scale">
             <div class="e-grid--column-center">
@@ -26,10 +26,15 @@ import { Observable } from 'rxjs';
 })
 export class MovieListComponent implements OnInit {
   movies$: Observable<Movie[]>;
+  breakpoint: number;
 
   constructor(private store: Store<fromStore.ProductsState>) {}
 
   ngOnInit() {
     this.movies$ = this.store.select(fromStore.getAllMovies);
+    this.breakpoint = (window.innerWidth <= 700) ? 1 : 3;
+  }
+  onResize(event) {
+    this.breakpoint = (event.target.innerWidth <= 700) ? 1 : 3;
   }
 }
